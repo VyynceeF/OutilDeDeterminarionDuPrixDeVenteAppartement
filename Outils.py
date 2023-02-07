@@ -35,4 +35,5 @@ def moyenneXY(tableau) :
     return moyenneX(nouveauTableau)
 
 analytique()
+
 print(moyenneXY(openfile.openFile("donnees.txt")))
