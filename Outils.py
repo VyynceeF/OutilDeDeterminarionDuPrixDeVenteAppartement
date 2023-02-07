@@ -2,7 +2,7 @@ import openfile
 
 #Calcul du point critique qui correspond à un minimum
 #Le point critique est le point où s'annule le gradient
-def analytique() :
+def analytique():
 
     tabX = [] #Déclaration tableau des x
     tabY = [] #Déclaration tableau des y
@@ -62,7 +62,7 @@ def gradient() :
         sommeXY+= i[0]*i[1]
     a=1
     b=1
-    deriveX = 2(a*sommeX2+b*sommeX-sommeXY)
+    deriveX = 2 * (a * sommeX2 + b * sommeX - sommeXY)
 
 
 print(analytique())
