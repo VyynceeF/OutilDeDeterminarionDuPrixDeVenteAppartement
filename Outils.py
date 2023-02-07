@@ -10,10 +10,9 @@ def analytique() :
         tabX.append(val[0])
         tabY.append(val[1])
 
-    minimun = (moyenneXY(tab) - moyenneX(tabX) * moyenneX(tabY)) / moyenneCarre(tabX) - moyenneX(tabX) ** 2
+    minimun = (moyenneXY(tab) - moyenneX(tabX) * moyenneX(tabY)) / moyenneCarree(tabX) - moyenneX(tabX) ** 2
 
     return minimun
-
 
 def moyenneCarree(tab):
     somme = 0
@@ -26,7 +25,6 @@ def moyenneX(tableau) :
     for val in tableau :
         somme += val
     return somme / len(tableau)
-
 
 def moyenneXY(tableau) :
     nouveauTableau = []
