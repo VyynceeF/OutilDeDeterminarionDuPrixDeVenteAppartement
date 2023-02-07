@@ -42,3 +42,5 @@ def moyenneXY(tableau):
     return moyenneX(nouveauTableau)
 
 print(analytique())
+
+calcul = 2 * ( a * sommeXi + len(tabX) * b - sommeYi )
