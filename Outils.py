@@ -2,7 +2,7 @@ import openfile
 
 #Calcul du point critique qui correspond à un minimum
 #Le point critique est le point où s'annule le gradient
-def analytique():
+def analytique() :
 
     tabX = [] #Déclaration tableau des x
     tabY = [] #Déclaration tableau des y
@@ -20,7 +20,7 @@ def analytique():
 
     return (a,b)
 
-
+#Calcul la moyenne des valeurs aux carrée du tableau tab
 def moyenneCarree(tab):
     somme = 0
     for val in tab:
@@ -41,7 +41,7 @@ def moyenneXY(tableau):
         nouveauTableau.append(val[0]*val[1])
     return moyenneX(nouveauTableau)
 
-def gradient() :
+def gradient(a, b) :
     tabX = []  # Déclaration tableau des x
     tabY = []  # Déclaration tableau des y
     tab = openfile.openFile("donnees.txt")  # Récupération des valeurs du fichier
@@ -51,19 +51,23 @@ def gradient() :
         tabX.append(val[0])
         tabY.append(val[1])
 
-    sommeX=0
+    sommeXi = 0
     sommeX2 = 0
+    sommeYi = 0
+
     for i in tabX:
-        sommeX+=i
-        sommeX2+=i**2
+        sommeXi += i
+        sommeX2 += i ** 2
 
     sommeXY = 0
     for i in tab:
-        sommeXY+= i[0]*i[1]
-    a=1
-    b=1
-    deriveX = 2 * (a * sommeX2 + b * sommeX - sommeXY)
+        sommeXY += i[0]*i[1]
+
+    deriveX = 2 * (a * sommeX2 + b * sommeXi - sommeXY)
+    deriveY = 2 * (a * sommeXi + len(tabX) * b - sommeYi)
+
+    return (deriveX, deriveY)
 
 
 print(analytique())
-gradient()
+print(gradient(2.6370100601552733,3.527390358018039))
