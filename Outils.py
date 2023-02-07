@@ -41,4 +41,29 @@ def moyenneXY(tableau):
         nouveauTableau.append(val[0]*val[1])
     return moyenneX(nouveauTableau)
 
+def gradient() :
+    tabX = []  # Déclaration tableau des x
+    tabY = []  # Déclaration tableau des y
+    tab = openfile.openFile("donnees.txt")  # Récupération des valeurs du fichier
+
+    # On insere les x et les y dans tabX et tabY
+    for val in tab:
+        tabX.append(val[0])
+        tabY.append(val[1])
+
+    sommeX=0
+    sommeX2 = 0
+    for i in tabX:
+        sommeX+=i
+        sommeX2+=i**2
+
+    sommeXY = 0
+    for i in tab:
+        sommeXY+= i[0]*i[1]
+    a=1
+    b=1
+    deriveX = 2(a*sommeX2+b*sommeX-sommeXY)
+
+
 print(analytique())
+gradient()
