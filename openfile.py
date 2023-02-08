@@ -1,6 +1,9 @@
-#Ouverture d'un fichier et renvoie des valeurs dans un tableau
-#Le paramètre name est le chemin du fichier
 def openFile(name):
+    """
+    Ouverture d'un fichier
+    :param name: nom du fichier à ouvrir
+    :return: un tableau de tableau [[x1,y1],...,[xn,yn]]
+    """
     tab = []
     file = open(name, "r") #Ouvre le fichier
     lines = file.readlines() #Récupère les lignes du fichiers
