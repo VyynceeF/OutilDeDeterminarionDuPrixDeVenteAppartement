@@ -98,6 +98,3 @@ def gradientDescent():
         a = a - alpha * derives[0]
         b = b - alpha * derives[1]
     return (a,b)
-
-print(analytique())
-print(gradientDescent())
