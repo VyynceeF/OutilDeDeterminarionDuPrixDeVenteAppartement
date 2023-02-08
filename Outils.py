@@ -1,4 +1,4 @@
-import openfile
+import openfile, math
 
 #Calcul du point critique qui correspond à un minimum
 #Le point critique est le point où s'annule le gradient
@@ -41,6 +41,7 @@ def moyenneXY(tableau):
         nouveauTableau.append(val[0]*val[1])
     return moyenneX(nouveauTableau)
 
+def gradient(a, b):
 
 
 def gradientDescent():
