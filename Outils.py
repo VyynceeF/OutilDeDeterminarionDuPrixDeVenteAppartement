@@ -46,7 +46,7 @@ def moyenneXY(tableau):
 def gradient(a, b) :
     tabX = []  # Déclaration tableau des x
     tabY = []  # Déclaration tableau des y
-    tab = openfile.openFile("donnees.txt")  # Récupération des valeurs du fichier
+    tab = openfile.openFile("donnees.txt")  #Récupération des valeurs du fichier
 
     # On insere les x et les y dans tabX et tabY
     for val in tab:
