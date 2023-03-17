@@ -112,7 +112,7 @@ def gradientDescent():
                 or 0 > derives[1] and derives[1] < derives_temp[1]:
             alpha = alpha / 2
 
-        else:
+        else :
             print(alpha, normeGrad, a, b, derives)
 
         normeGrad = math.sqrt(derives[0] ** 2 + derives[1] ** 2)
