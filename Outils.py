@@ -78,28 +78,15 @@ def mediane(tableau):
     sorted(tableauPropre)  # Sorting now works as expected
     return median(tableauPropre)
 
-def gradient(a, b, donnees):
+def gradient(a, b, sommeXi, sommeX2, sommeYi, sommeXY, lenTab):
     """
     Calcul le gradient de a et b
     :param a: pente de la droite
     :param b: ordonnée à l'origine
     :return:  les derives partielles de a et b
     """
-    tab = openfile.openFile(donnees)  # Récupération des valeurs du fichier
-
-    sommeXi = 0
-    sommeX2 = 0
-    sommeYi = 0
-    sommeXY = 0
-
-    for i in tab:
-        sommeXi += i[0]
-        sommeX2 += i[0] ** 2
-        sommeYi += i[1]
-        sommeXY += i[0] * i[1]
-
     deriveX = 2 * (a * sommeX2 + b * sommeXi - sommeXY)
-    deriveY = 2 * (a * sommeXi + len(tab) * b - sommeYi)
+    deriveY = 2 * (a * sommeXi + lenTab * b - sommeYi)
 
     return (deriveX, deriveY)
 
@@ -113,9 +100,28 @@ def gradientDescent(donnees):
     tableau = formatageDonnees(donnees)
     ancienA = a = mediane(tableau[0])
     ancienB = b = mediane(tableau[1])
+
+    tab = openfile.openFile(donnees)  # Récupération des valeurs du fichier
+
+    lenTab = len(tableau[0])
+    sommeXi = sum(tableau[0])
+    #sommeX2 = sum(tableau[0] ** 2)
+    sommeYi = sum(tableau[1])
+    sommeXY = tuple(map(sum, tableau))
+    print(sommeXY)
+    sommeXY = 0
+    sommeX2 = 0
+
+    for i in tab:
+        #sommeXi += i[0]
+        sommeX2 += i[0] ** 2
+        #sommeYi += i[1]
+        sommeXY += i[0] * i[1]
+    print(sommeXY)
+
     ite = 0
     alpha = 0.01
-    derives = gradient(a, b, donnees)
+    derives = gradient(a, b, sommeXi, sommeX2, sommeYi, sommeXY, lenTab)
 
     normeGrad = math.sqrt(derives[0] ** 2 + derives[1] ** 2)
 
@@ -123,15 +129,15 @@ def gradientDescent(donnees):
         ite += 1
         ancienA, a = a, a - alpha * derives[0]
         ancienB, b = b, b - alpha * derives[1]
-        derives = gradient(a, b, donnees)
+        derives = gradient(a, b, sommeXi, sommeX2, sommeYi, sommeXY, lenTab)
         normeGrad = math.sqrt(derives[0] ** 2 + derives[1] ** 2)
 
         if ancienA < a and ancienB < b :
             alpha /= 10
-        print(a,b)
+        
 
     return a, b, ite
 
-donnees = "donnees.txt"
+donnees = "test.txt"
 print(analytique(donnees))
 print(gradientDescent(donnees))
