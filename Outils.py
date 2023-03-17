@@ -111,33 +111,27 @@ def gradientDescent(donnees):
     """
 
     tableau = formatageDonnees(donnees)
-    a = mediane(tableau[0])
-    b = mediane(tableau[1])
-    print (a, b)
+    ancienA = a = mediane(tableau[0])
+    ancienB = b = mediane(tableau[1])
     ite = 0
-    alpha = 0.001
+    alpha = 0.01
     derives = gradient(a, b, donnees)
 
     normeGrad = math.sqrt(derives[0] ** 2 + derives[1] ** 2)
 
-    while normeGrad > 1e-5:
+    while normeGrad > 1e-3:
         ite += 1
-        a = a - alpha * derives[0]        
-        b = b - alpha * derives[1]
+        ancienA, a = a, a - alpha * derives[0]
+        ancienB, b = b, b - alpha * derives[1]
         derives = gradient(a, b, donnees)
         normeGrad = math.sqrt(derives[0] ** 2 + derives[1] ** 2)
-        print(a, b)
 
-        if  ancienA < a and ancienB < b :
-            alpha /= 100
-        
-    return (a, b, ite)
+        if ancienA < a and ancienB < b :
+            alpha /= 10
+        print(a,b)
+
+    return a, b, ite
 
 donnees = "donnees.txt"
 print(analytique(donnees))
 print(gradientDescent(donnees))
-
-"""
-alpha -> si pente iteration precedente negative est pente de cette iteration positive reduire alpha 
-alpha -> petit si ecart entre les deux normes est petit
-"""
