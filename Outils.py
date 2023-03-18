@@ -101,28 +101,15 @@ def gradientDescent(donnees):
     ancienA = a = mediane(tableau[0])
     ancienB = b = mediane(tableau[1])
 
-    tab = openfile.openFile(donnees)  # Récupération des valeurs du fichier
-
     lenTab = len(tableau[0])
     sommeXi = sum(tableau[0])
-    #sommeX2 = sum(tableau[0] ** 2)
+    sommeX2 = sum(a1 * a2 for a1, a2 in zip(tableau[0], tableau[0]))
     sommeYi = sum(tableau[1])
-    sommeXY = tuple(map(sum, tableau))
-    print(sommeXY)
-    sommeXY = 0
-    sommeX2 = 0
-
-    for i in tab:
-        #sommeXi += i[0]
-        sommeX2 += i[0] ** 2
-        #sommeYi += i[1]
-        sommeXY += i[0] * i[1]
-    print(sommeXY)
+    sommeXY = sum(a * b for (a,b) in zip(tableau[0], tableau[1]))
 
     ite = 0
     alpha = 0.01
     derives = gradient(a, b, sommeXi, sommeX2, sommeYi, sommeXY, lenTab)
-
     normeGrad = math.sqrt(derives[0] ** 2 + derives[1] ** 2)
 
     while normeGrad > 1e-3:
@@ -134,7 +121,6 @@ def gradientDescent(donnees):
 
         if ancienA < a and ancienB < b :
             alpha /= 10
-        
 
     return a, b, ite
 
