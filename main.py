@@ -3,41 +3,81 @@ import Outils
 from tkinter import *
 from tkinter import filedialog
 
-option = input("1 - Méthode analytique\n2 - Descente de gradient\n3 - Créer et initialiser votre fichier de données")
+option = ""
+global filename
 def fileOpen():
+    global filename
     filename = filedialog.askopenfilename(initialdir="/",
-                                          title="Select a File",
-                                          filetypes=(("Text files",
-                                                      "*.txt*"),
-                                                     ("all files",
-                                                      "*.*")))
-    label.configure(text="Fichier actuel: " + filename)
+                                          title="Select a File")
+    label.configure(text="Fichier actuel :\n" + filename)
 
-while (option != "10") :
-    match option:
-        case "1":
-            print(Outils.analytique())
-        case "2":
-            print(Outils.gradientDescent())
-        case "3":
-            name = str(input("Entrer le nom du fichier à créer : ")) + ".txt"
-            traitement.creation(name)
-        case _:
-            print("Option choisi incorrecte")
+def calculAnalytique():
+    global filename
+    if filename != "":
+        resultat = Outils.analytique(filename)
+        labelResultatAnalytique.configure(text= "Resultat : " + str(resultat))
+        print(resultat)
+
+def descenteGrdt():
+    global filename
+    if filename != "":
+        resultat = Outils.gradientDescent(filename)
+        labelResultatGrdt.configure(text= "Resultat : " + str(resultat))
+        print(resultat)
 
 window = Tk()
 window.title("Outil d'aide à la determination")
-window.geometry('500x500')
-window.resizable(width = 0, height = 0)
+window.geometry('900x500')
+window.resizable(width = 900, height = 900)
 window["bg"] = "#e1e6ec"
 
-label = Label(window, text="Fichier actuel : ")
-label.pack()
+frameTop = Frame(window)
+frameTop.pack(side=TOP, pady=10, padx=10)
 
-saisie = Entry(window, width=10)
-saisie.pack()
+frameBottom = Frame(window)
+frameBottom.pack(side=TOP, pady=10, padx=10)
 
-bouton = Button( window , text = "Choisir un fichier", command=fileOpen)
-bouton.pack()
+#Frame Haut Droite
+frameDroite = Frame(frameTop)
+frameDroite.pack(side = LEFT, pady=10, padx=10)
+
+label = Label(frameDroite, text="Selectionner un fichier")
+label.pack(padx= 10, pady = 10)
+
+bouton = Button( frameDroite, text = "Choisir un fichier", command=fileOpen)
+bouton.pack(padx= 10, pady = 10)
+
+#Frame bas droite
+frameBasDroite = Frame(frameBottom)
+frameBasDroite.pack(side = LEFT, padx= 10, pady = 10)
+
+labelAnalytique = Label(frameBasDroite, text="Calcul Analytique")
+labelAnalytique.pack(padx= 10, pady = 10)
+
+buttonAnalytique = Button(frameBasDroite, text="Calculer", command = calculAnalytique)
+buttonAnalytique.pack(padx= 10, pady = 10)
+
+labelResultatAnalytique = Label(frameBasDroite)
+labelResultatAnalytique.pack(padx= 10, pady = 10)
+
+#Frame Haut Gauche
+frameGauche = Frame(frameTop)
+frameGauche.pack(side = RIGHT, padx= 10, pady = 10)
+
+labelCreer = Label(frameGauche, text="Créer un fichier de données")
+labelCreer.pack(padx= 10, pady = 10)
+
+#Frame Bas Gauche
+frameBasGauche = Frame(frameBottom)
+frameBasGauche.pack(side = RIGHT, padx= 10, pady = 10)
+
+labelGrd = Label(frameBasGauche, text="Descente de gradient")
+labelGrd.pack(padx= 10, pady = 10)
+
+buttonGrdt = Button(frameBasGauche, text="Calculer", command = descenteGrdt)
+buttonGrdt.pack(padx= 10, pady = 10)
+
+labelResultatGrdt = Label(frameBasGauche)
+labelResultatGrdt.pack(padx= 10, pady = 10)
 
 window.mainloop()

@@ -28,7 +28,7 @@ def analytique(donnees):
     tab = formatageDonnees(donnees)
     tabA = tab[0]  # Déclaration tableau des x
     tabB = tab[1]  # Déclaration tableau des y
-    
+
     # Calcul de a
     a = (moyenneXY(tabA, tabB) - moyenneX(tabA) * moyenneX(tabB)) / (moyenneCarree(tabA) - (moyenneX(tabA) ** 2))
     # Calcul de b
@@ -123,7 +123,3 @@ def gradientDescent(donnees):
             alpha /= 10
 
     return a, b, ite
-
-donnees = "test.txt"
-print(analytique(donnees))
-print(gradientDescent(donnees))
