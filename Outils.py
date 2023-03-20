@@ -14,7 +14,6 @@ def analytique(donnees):
     tab = openfile.formatageDonnees(donnees) #Récupération des données
     tabA = tab[0]  # Récupération tableau des a
     tabB = tab[1]  # Récupération tableau des b
-
     # Calcul de a, en applicant la formule "cov(x,y) / V(x)"
     a = (moyenneXY(tabA, tabB) - mean(tabA) * mean(tabB)) / (moyenneCarree(tabA) - (mean(tabA) ** 2))
     # Calcul de b, en applicant la formule "moy(y) - a * moy(x)"
@@ -62,10 +61,10 @@ def gradient(a, b, sommeXi, sommeX2, sommeYi, sommeXY, lenTab):
     Calcul le gradient d'une fonction de deux variables
     :param a: valeur de la premiere variable
     :param b: valeur de la seconde variable
-    :param sommeXi: somme de tout les a du jeu de données
-    :param sommeX2: somme de tout les a au carré du jeu de données
-    :param sommeYi: somme de tout les b du jeu de données
-    :param sommeXY: somme de tout les a+b du jeu de données
+    :param sommeXi: somme de tous les a du jeu de données
+    :param sommeX2: somme de tous les a au carré du jeu de données
+    :param sommeYi: somme de tous les b du jeu de données
+    :param sommeXY: somme de tous les a+b du jeu de données
     :param lenTab: longueur de jeu de données
     :return: les dérivés partielles de a et b
     """
