@@ -12,7 +12,7 @@ def fileOpen():
     label.configure(text="Fichier actuel :\n" + filename)
 
 def creer():
-    os.system("py traitement.py")
+    os.system("py traitement.py") #Test
 
 def calculAnalytique():
     global filename
