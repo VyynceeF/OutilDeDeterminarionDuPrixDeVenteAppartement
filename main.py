@@ -1,4 +1,4 @@
-import Outils, os, traitement
+import os
 import Outils
 from tkinter import *
 from tkinter import filedialog
@@ -10,6 +10,9 @@ def fileOpen():
     filename = filedialog.askopenfilename(initialdir="/",
                                           title="Select a File")
     label.configure(text="Fichier actuel :\n" + filename)
+
+def creer():
+    os.system("py traitement.py")
 
 def calculAnalytique():
     global filename
@@ -66,6 +69,9 @@ frameGauche.pack(side = RIGHT, padx= 10, pady = 10)
 
 labelCreer = Label(frameGauche, text="Créer un fichier de données")
 labelCreer.pack(padx= 10, pady = 10)
+
+btn = Button(frameGauche, text="Creer", command=creer)
+btn.pack()
 
 #Frame Bas Gauche
 frameBasGauche = Frame(frameBottom)

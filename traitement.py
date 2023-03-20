@@ -42,3 +42,6 @@ def typage(valeur):
         return newValeur
     except:
         return valeur
+
+name = str(input("Entrer un nom : "))
+creation(name + ".txt")
