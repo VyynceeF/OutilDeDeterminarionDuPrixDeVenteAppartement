@@ -9,29 +9,32 @@ def fileOpen():
     global filename
     filename = filedialog.askopenfilename(initialdir="/",
                                           title="Select a File")
-    label.configure(text="Fichier actuel :\n" + filename)
+    name = ""
+    i = len(filename)-1
+    while filename[i] != "\\":
+        name = filename[i] + name
+        i -= 1
+
+    label.configure(text="Fichier actuel :\n" + name)
 
 def creer():
-    print("py " + os.getcwd() + "\\traitement.py")
-    os.system("py " + os.getcwd() + "\\traitement.py") #Test
+    os.system("py " + os.getcwd() + "\\traitement.py")
 
 def calculAnalytique():
     global filename
     if filename != "":
         resultat = Outils.analytique(filename)
-        labelResultatAnalytique.configure(text= "Resultat : " + str(resultat))
-        print(resultat)
+        labelResultatAnalytique.configure(text= "a = " + str(round(resultat[0], 2)) + " b = " + str(round(resultat[1],2)))
 
 def descenteGrdt():
     global filename
     if filename != "":
         resultat = Outils.gradientDescent(filename)
-        labelResultatGrdt.configure(text= "Resultat : " + str(resultat))
-        print(resultat)
+        labelResultatGrdt.configure(text= "a = " + str(round(resultat[0],2)) + " b = " + str(round(resultat[1],2)))
 
 window = Tk()
 window.title("Outil d'aide à la determination")
-window.geometry('900x500')
+window.geometry('450x350')
 window.resizable(width = 900, height = 900)
 window["bg"] = "#e1e6ec"
 
