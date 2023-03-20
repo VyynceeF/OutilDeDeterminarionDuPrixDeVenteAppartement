@@ -12,6 +12,7 @@ def fileOpen():
     label.configure(text="Fichier actuel :\n" + filename)
 
 def creer():
+    print("py " + os.getcwd() + "/traitement.py")
     os.system("py " + os.getcwd() + "/traitement.py") #Test
 
 def calculAnalytique():
